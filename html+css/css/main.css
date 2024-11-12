@@ -1,0 +1,354 @@
+/* Flexbox
+Flexbox (или "гибкая коробка") — это мощный инструмент для выравнивания элементов. Основные свойства Flexbox для выравнивания:
+
+display: flex; — чтобы активировать flex-контейнер, который будет управлять выравниванием элементов.
+
+justify-content — управляет выравниванием элементов по основной оси (горизонтально, если элементы расположены по умолчанию).
+
+flex-start — выравнивание по левому краю (по умолчанию).
+flex-end — выравнивание по правому краю.
+center — выравнивание по центру.
+space-between — распределяет элементы с равными промежутками, первый элемент прижимается к началу, последний — к концу.
+space-around — элементы имеют равные промежутки вокруг каждого из них.
+space-evenly — элементы имеют равные промежутки между собой и по краям контейнера.
+
+
+align-items — выравнивание по вертикали (перпендикулярно основной оси).
+
+
+flex-start — выравнивание по верхнему краю.
+flex-end — выравнивание по нижнему краю.
+center — выравнивание по центру.
+baseline — выравнивание по базовой линии текста.
+stretch — растягивание элементов по высоте (по умолчанию).
+align-self — позволяет выравнивать отдельный элемент в контейнере относительно других элементов.
+
+auto — использование значения align-items для элемента.
+flex-start — выравнивание по верхнему краю.
+flex-end — выравнивание по нижнему краю.
+center — выравнивание по центру.
+stretch — растягивание элемента. */
+
+/* Подключаем шрифты с Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Poppins:wght@400;500;700&display=swap');
+
+/* Основные переменные цветов */
+:root {
+    --color-background: #2d2d2d;
+    /* Темный фон */
+    --color-text-white: #fff;
+    /* Белый цвет текста */
+    --color-accent: #5b00b1;
+    /* Акцентный фиолетовый цвет */
+
+    --background: var(--color-background);
+    /* Фон */
+    --text: var(--color-text-white);
+    /* Текст */
+    --accent: var(--color-accent);
+    /* Акцентный цвет */
+}
+
+/* Основные стили */
+* {
+    margin: 0;
+    /* Убирает отступы у всех элементов */
+    padding: 0;
+    /* Убирает паддинги у всех элементов */
+    box-sizing: border-box;
+    /* Устанавливает модель box-sizing для всех элементов */
+}
+
+body {
+    font-family: 'DM Sans', sans-serif;
+    /* Устанавливаем шрифт DM Sans для всего тела страницы */
+    line-height: 1.6;
+    /* Устанавливает межстрочное расстояние */
+    background-color: var(--background);
+    /* Устанавливает фон страницы */
+    color: var(--text);
+    /* Устанавливает цвет текста */
+}
+
+/* Навигация */
+.nav {
+    background-color: var(--background);
+    /* Темный фон для навигации */
+    color: var(--text);
+    /* Белый цвет текста в навигации */
+    padding: 15px 0;
+    /* Отступы сверху и снизу */
+    border-bottom: 1px solid #878787;
+}
+
+.nav .container {
+    display: flex;
+    /* Использует flexbox для размещения элементов */
+    justify-content: space-between;
+    /* Распределяет элементы по горизонтали с отступами между ними */
+    align-items: center;
+    /* Выравнивает элементы по центру по вертикали */
+    width: 100%;
+    /* Ширина контейнера - 100% от родительского элемента */
+    max-width: 1200px;
+    /* Ограничивает максимальную ширину контейнера */
+    margin: 0 auto;
+    /* Центрирует контейнер по горизонтали */
+    padding: 0 20px;
+    /* Отступы слева и справа */
+}
+
+.nav .logo {
+    font-family: 'Poppins', sans-serif;
+    /* Используем шрифт Poppins для логотипа */
+    font-size: 24px;
+    /* Размер шрифта для логотипа */
+    color: var(--text);
+    /* Белый цвет для текста логотипа */
+    text-decoration: none;
+    /* Убирает подчеркивание */
+}
+
+.nav-list {
+    list-style: none;
+    /* Убирает маркеры из списка */
+    display: flex;
+    /* Размещает элементы списка в ряд */
+}
+
+.nav-list li {
+    margin: 0 15px;
+    /* Добавляет отступы между элементами списка */
+}
+
+.nav-list-link {
+    color: var(--text);
+    /* Белый цвет для ссылок */
+    text-decoration: none;
+    /* Убирает подчеркивание у ссылок */
+    font-size: 18px;
+    /* Размер шрифта для ссылок */
+    font-family: 'DM Sans', sans-serif;
+    /* Шрифт DM Sans для ссылок */
+}
+
+.nav-list-link--active {
+    font-weight: bold;
+    /* Жирный шрифт для активной ссылки */
+    border-bottom: 2px solid var(--accent);
+    /* Нижнее подчеркивание активной ссылки */
+}
+
+.nav-list-link:hover {
+    color: var(--accent);
+    /* Цвет акцента при наведении на ссылку */
+}
+
+/* Заголовок */
+.header {
+    height: 500px;
+    background: url('./../img/header-bg.png');
+    background-repeat: no-repeat;
+    background-size: auto;
+    background-position: center;
+    /* Устанавливает фоновое изображение */
+    color: var(--text);
+    /* Белый цвет текста */
+    padding: 100px 0;
+    /* Большие отступы сверху и снизу */
+    text-align: center;
+    /* Выравнивание текста по центру */
+
+}
+
+.header .title h1 {
+    font-family: 'Poppins', sans-serif;
+    /* Шрифт Poppins для заголовка */
+    font-size: 48px;
+    /* Размер шрифта для заголовка */
+    margin-bottom: 20px;
+    /* Отступ снизу */
+}
+
+.header .title em {
+    font-style: normal;
+    color: var(--accent);
+    /* Окрасить в акцентный цвет текст внутри <em> */
+}
+
+.header .btn {
+    background-color: var(--accent);
+    /* Цвет кнопки - акцентный */
+    color: var(--text);
+    /* Белый цвет текста на кнопке */
+    padding: 10px 30px;
+    /* Отступы внутри кнопки */
+    border-radius: 5px;
+    /* Скругленные углы кнопки */
+    text-decoration: none;
+    /* Убирает подчеркивание */
+    font-size: 18px;
+    /* Размер шрифта для текста на кнопке */
+    transition: background-color 0.3s;
+    /* Плавное изменение фона при наведении */
+}
+
+.header .btn:hover {
+    background-color: #e5533e;
+    /* Темный красный при наведении на кнопку */
+}
+
+/* Раздел с играми */
+/* Раздел с играми */
+.games {
+    background-color: var(--background);
+    /* Темный фон для блока с играми */
+    padding: 50px 0;
+    /* Отступы сверху и снизу */
+}
+
+.games .container {
+    width: 100%;
+    /* Ширина контейнера - 100% */
+    max-width: 1200px;
+    /* Ограничивает максимальную ширину контейнера */
+    margin: 0 auto;
+    /* Центрирует контейнер */
+    padding: 0 20px;
+    /* Отступы слева и справа */
+}
+
+.title-1 {
+    font-family: 'Poppins', sans-serif;
+    /* Используем шрифт Poppins для заголовка раздела */
+    font-size: 36px;
+    /* Размер шрифта для заголовка */
+    text-align: center;
+    /* Выравнивание заголовка по центру */
+    margin-bottom: 40px;
+    /* Отступ снизу */
+}
+
+.games ul {
+    display: grid;
+    /* Используем grid для раскладки */
+    grid-template-columns: repeat(3, 1fr);
+    /* 3 колонки одинаковой ширины для больших экранов */
+    gap: 20px;
+    /* Отступы между элементами */
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+/* Для мобильных устройств и экранов меньшего размера */
+@media (max-width: 768px) {
+    .games ul {
+        grid-template-columns: repeat(2, 1fr);
+        /* 2 колонки на маленьких экранах */
+    }
+}
+
+.game {
+    max-width: 320px;
+    background-color: #f9f9f9;
+    /* Светлый фон для блока с игрой */
+    border-radius: 10px;
+    /* Скругленные углы */
+    overflow: hidden;
+    /* Скрывает элементы, выходящие за пределы блока */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    /* Легкая тень вокруг блока */
+    transition: transform 0.3s, box-shadow 0.3s;
+    /* Плавное изменение при наведении */
+}
+
+.game:hover {
+    transform: translateY(-5px);
+    /* Поднимает блок на 5px при наведении */
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+    /* Более сильная тень при наведении */
+}
+
+.game-item-description {
+    display: block;
+    /* Устанавливает элементы как блочные */
+    text-align: center;
+    /* Выравнивает текст по центру */
+    color: inherit;
+    /* Наследует цвет текста от родителя */
+    text-decoration: none;
+    /* Убирает подчеркивание у ссылок */
+}
+
+.game-img {
+    width: 320px;
+    /* Ширина изображения - 100% от контейнера */
+    height: 450px;
+    /* Автоматическая высота для сохранения пропорций */
+    display: block;
+    /* Убирает пустые области под изображением */
+}
+
+.game-title {
+    font-family: 'Poppins', sans-serif;
+    /* Шрифт Poppins для названия игры */
+    font-size: 20px;
+    /* Размер шрифта для названия игры */
+    margin: 15px 0;
+    /* Отступы сверху и снизу */
+    color: var(--color-background);
+    /* Темный цвет для названия игры */
+}
+
+
+/* Footer */
+/* Основные стили для футера */
+.footer {
+    background-color: #2d2d2d;
+    /* Цвет фона */
+    color: #fff;
+    /* Цвет текста */
+    padding: 20px 0;
+    text-align: center;
+}
+
+.footer .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Центрируем содержимое футера */
+.footer-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Стили для списка иконок */
+.social {
+    list-style: none;
+    /* Убираем маркеры списка */
+    display: flex;
+    /* Размещаем элементы по горизонтали */
+    gap: 15px;
+    /* Расстояние между иконками */
+    padding: 0;
+    /* Убираем отступы */
+    margin: 0 0 10px;
+    /* Отступ снизу */
+}
+
+.social__item img {
+    width: 24px;
+    /* Задаем размер иконок */
+    height: 24px;
+}
+
+/* Стили для авторских прав */
+.copyright {
+    font-size: 14px;
+    color: #ccc;
+    /* Цвет текста авторских прав */
+}
