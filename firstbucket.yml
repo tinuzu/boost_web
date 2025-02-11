@@ -1,21 +1,14 @@
-AWSTemplateFormatVersion: 2010-09-09
-Description: Template to create an S3 bucket with customizable name and versioning enabled
-
-Parameters:
-  BucketName:
-    Type: String
-    Description: Name of the S3 bucket
-    Default: tinuzu-bucket
-
+AWSTemplateFormatVersion: '2010-09-09'
 Resources:
-  S3Bucket:
+  MyS3Bucket:
     Type: AWS::S3::Bucket
     Properties:
-      BucketName: !Ref BucketName
+      BucketName: testbucket
+      AccessControl: Private
       VersioningConfiguration:
-        Status: Enabled 
-
-Outputs:
-  BucketNameOutput:
-    Value: !Ref S3Bucket
-    Description: Name of the created S3 bucket
+        Status: Enabled
+      PublicAccessBlockConfiguration:
+        BlockPublicAcls: true
+        BlockPublicPolicy: true
+        IgnorePublicAcls: true
+        RestrictPublicBuckets: true
