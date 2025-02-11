@@ -1,1 +1,3 @@
-BucketName: custom-bucket-name
+parameters:
+  BucketName: my-custom-bucket-name
+tags: {}
