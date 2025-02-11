@@ -5,7 +5,7 @@ Parameters:
   BucketName:
     Type: String
     Description: Name of the S3 bucket
-    Default: tinuzu-bucket  # Имя по умолчанию
+    Default: tinuzu-bucket
 
 Resources:
   S3Bucket:
