@@ -1,3 +1,3 @@
-parameters:
-  BucketName: my-custom-bucket-name
+template-file-path: firstbucket.yml
+parameters: {}
 tags: {}
