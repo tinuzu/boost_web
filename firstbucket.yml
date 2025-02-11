@@ -1,15 +1,21 @@
 AWSTemplateFormatVersion: 2010-09-09
-Description: CloudFormation template for s3 bucket 
-    
+Description: Template to create an S3 bucket with customizable name and versioning enabled
+
+Parameters:
+  BucketName:
+    Type: String
+    Description: Name of the S3 bucket
+    Default: tinuzu-bucket  # Имя по умолчанию
+
 Resources:
   S3Bucket:
     Type: AWS::S3::Bucket
-    Description: Creating Amazon S3 bucket from CloudFormation
     Properties:
-      BucketName: test
+      BucketName: !Ref BucketName
       VersioningConfiguration:
-        Status: Enabled
+        Status: Enabled 
+
 Outputs:
-  S3Bucket:
-    Description: Bucket Created using this template.
+  BucketNameOutput:
     Value: !Ref S3Bucket
+    Description: Name of the created S3 bucket
